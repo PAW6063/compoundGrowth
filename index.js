@@ -32,7 +32,7 @@ button.addEventListener("click", (event) => {
     total += amountAdded;
     
     previous.push(Number(total).toFixed(2));
-    profit.push(Number((total - previous[i - 1]) - amountAdded).toFixed(2));
+    profit.push(Number((total - previous[i - 1]) - (amountAdded * i)).toFixed(2));
     
     let row = document.createElement('tr');
 
