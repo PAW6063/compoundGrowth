@@ -3,6 +3,8 @@ button.addEventListener("click", (event) => {
   
   document.getElementById("table").innerHTML = "";
   let title = document.createElement('tr');
+  let th0 = document.createElement('th');
+  th0.innerHTML = "Period";
   let th1 = document.createElement(`th`);
   th1.innerHTML = "Total";
   let th2 = document.createElement(`th`);
@@ -10,7 +12,8 @@ button.addEventListener("click", (event) => {
   let th3 = document.createElement(`th`);
   th3.innerHTML = "Total Profit";
 
-  title.append(th1);
+  title.append(th0);
+  title.appendChild(th1);
   title.appendChild(th2);
   title.appendChild(th3);
 
@@ -24,6 +27,24 @@ button.addEventListener("click", (event) => {
   let profit = [0];
   let previous = [total];
 
+  let row = document.createElement('tr');
+
+  let td0 = document.createElement(`td`);
+  td0.innerHTML = 0;
+  let td1 = document.createElement(`td`);
+  td1.innerHTML = total.toFixed(2);
+  let td2 = document.createElement(`td`);
+  td2.innerHTML = Number(profit[0]).toFixed(2);
+  let td3 = document.createElement(`td`);
+  td3.innerHTML = (0).toFixed(2);
+
+  row.append(td0);
+  row.appendChild(td1);
+  row.appendChild(td2);
+  row.appendChild(td3);
+
+  document.getElementById("table").append(row);
+
   for(let i = 1; i < time + 1; i++){
     
     for(let j = 0; j < growth; j++){
@@ -32,20 +53,23 @@ button.addEventListener("click", (event) => {
     total += amountAdded;
     
     previous.push(Number(total).toFixed(2));
-    profit.push(Number((total - previous[i - 1]) - (amountAdded * i)).toFixed(2));
+    profit.push(Number((total - previous[i - 1]) - amountAdded).toFixed(2));
     
     let row = document.createElement('tr');
 
+    let td0 = document.createElement(`td`);
+    td0.innerHTML = i;
     let td1 = document.createElement(`td`);
     td1.innerHTML = total.toFixed(2);
     let td2 = document.createElement(`td`);
     td2.innerHTML = Number(profit[i]).toFixed(2);
     let td3 = document.createElement(`td`);
-    td3.innerHTML = (previous[i] - previous[0]).toFixed(2);
+    td3.innerHTML = ((previous[i] - previous[0]) - (amountAdded * i)).toFixed(2);
 
-    row.append(td1);
-    row.appendChild(td2);
-    row.appendChild(td3);
+  row.append(td0);
+  row.appendChild(td1);
+  row.appendChild(td2);
+  row.appendChild(td3);
 
     document.getElementById("table").append(row);
   }
