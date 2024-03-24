@@ -17,6 +17,7 @@ button.addEventListener("click", (event) => {
   document.getElementById("table").append(title);
 
   let total = parseFloat(document.getElementById("total").value);
+  let amountAdded = parseFloat(document.getElementById("amountAdded").value);
   let percent = parseFloat(document.getElementById("percent").value) / 100.0;
   let time = parseInt(document.getElementById("time").value);
   let growth = parseInt(document.getElementById("growth").value);
@@ -31,6 +32,7 @@ button.addEventListener("click", (event) => {
     
     previous.push(Number(total).toFixed(2));
     profit.push(Number(total - previous[i - 1]).toFixed(2));
+    total += amountAdded;
     
     let row = document.createElement('tr');
 
