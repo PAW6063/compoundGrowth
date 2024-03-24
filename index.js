@@ -29,10 +29,10 @@ button.addEventListener("click", (event) => {
     for(let j = 0; j < growth; j++){
       total += total * percent;
     }
+    total += amountAdded;
     
     previous.push(Number(total).toFixed(2));
-    profit.push(Number(total - previous[i - 1]).toFixed(2));
-    total += amountAdded;
+    profit.push(Number((total - previous[i - 1]) - amountAdded).toFixed(2));
     
     let row = document.createElement('tr');
 
